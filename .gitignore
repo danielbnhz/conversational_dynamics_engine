@@ -1,0 +1,19 @@
+# CLion
+.idea/
+cmake-build-*/
+
+# Compiled output
+build/
+out/
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Local datasets
+data/raw/*
+data/processed/*
+
+# Local configuration
+*.local.json
