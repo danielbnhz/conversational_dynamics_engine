@@ -17,3 +17,7 @@ data/processed/*
 
 # Local configuration
 *.local.json
+
+# ignore datasets
+data/raw
+dat/processed

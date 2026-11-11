@@ -13,7 +13,9 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(conversational_dynamics_engine src/main.cpp)
+add_executable(conversational_dynamics_engine src/main.cpp
+        src/View/MainWindow.cpp
+        src/View/MainWindow.h)
 target_link_libraries(conversational_dynamics_engine
         Qt::Core
         Qt::Gui
