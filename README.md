@@ -126,3 +126,82 @@ CDE is intended to become a substantial analytical engineering system, not a lig
 Its ambition is to investigate conversational dynamics as a complex, evolving process: interpreting language in context, tracking relationships and state, maintaining competing hypotheses, predicting structural developments, and measuring the reliability of those conclusions.
 
 The project should be ambitious in its research questions and disciplined in its engineering. Computational scale is justified when it produces measurable analytical value—not simply because complexity is desirable in itself.
+
+
+---
+
+## Development Update — Native Application & Database Foundation
+
+### Current Changes
+
+The project has established its initial native desktop application structure using **C++20, Qt 6 Widgets, and CMake**.
+
+The initial application interface is organized into five primary panels:
+
+- **Dialogue Stream** — dialogue ingestion and inspection.
+- **Ontology and Referents** — semantic concepts and referent organization.
+- **Relationships** — representation of relationships between conversational entities.
+- **Prediction Engine** — future behavioral and conversational prediction.
+- **Statistical Analysis** — statistical evaluation and visualization.
+
+The application is being organized around an **MVCEP architecture**:
+
+- **Model:** Domain objects and representations.
+- **View:** Native Qt interface and presentation.
+- **Controller:** Coordination of application workflows and user interactions.
+- **Engine:** Computational analysis, inference, prediction, and evaluation.
+- **Persistence:** Database connectivity, storage, retrieval, and repository operations.
+
+### Database Foundation
+
+SQLite has been selected as the initial database technology.
+
+The project now includes a `DatabaseManager` foundation using Qt SQL (`QSqlDatabase`) and the SQLite driver (`QSQLITE`).
+
+The initial database location is:
+
+`data/databases/cde_research.sqlite`
+
+The database directory is created automatically when the application initializes its database connection.
+
+SQLite was selected because the application is initially intended to operate as a standalone, single-user research environment. It provides local persistence without requiring a separate database server.
+
+### Planned SQLite Development
+
+The following database capabilities are planned:
+
+1. **Schema Design**
+    - Dialogue records and utterance boundaries.
+    - Dataset and source metadata.
+    - Participant and conversational entity representations where supported by the source data.
+    - Ontology and referent records.
+    - Prediction results and evaluation records.
+
+2. **Dataset Ingestion**
+    - Import DailyDialog and future conversational datasets.
+    - Preserve original source data and dataset partitions.
+    - Maintain alignment between dialogues, utterances, and supplied annotations.
+    - Track dataset provenance and import metadata.
+
+3. **Repository Layer**
+    - Introduce dedicated repositories for domain objects.
+    - Separate SQL operations from the computational engine.
+    - Support prepared statements, transactions, indexing, and efficient retrieval.
+
+4. **Research and Evaluation Storage**
+    - Persist statistical observations and experimental results.
+    - Store prediction outputs independently of ground-truth annotations.
+    - Support repeatable experiments and comparisons across model configurations.
+
+5. **Performance and Scalability**
+    - Use indexed queries and transactional bulk imports.
+    - Retrieve large datasets incrementally rather than loading everything into memory.
+    - Evaluate SQLite performance against actual research workloads before considering alternative database systems.
+
+### Architectural Direction
+
+The computational engine is intended to remain independent of Qt's presentation layer and the underlying database implementation.
+
+This separation will allow the research engine to evolve independently and potentially become a reusable component of a larger Social Dynamics Engine.
+
+The immediate development priority is establishing reliable data persistence before implementing dataset ingestion, analytical modules, and predictive capabilities.

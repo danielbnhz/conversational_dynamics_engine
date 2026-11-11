@@ -11,15 +11,19 @@ find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
+        Sql
         REQUIRED)
 
 add_executable(conversational_dynamics_engine src/main.cpp
         src/View/MainWindow.cpp
-        src/View/MainWindow.h)
+        src/View/MainWindow.h
+        src/Persistence/Database/DatabaseManager.cpp
+        src/Persistence/Database/DatabaseManager.h)
 target_link_libraries(conversational_dynamics_engine
         Qt::Core
         Qt::Gui
         Qt::Widgets
+        Qt6::Sql
 )
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
